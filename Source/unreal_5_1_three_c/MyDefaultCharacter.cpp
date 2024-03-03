@@ -4,6 +4,7 @@
 #include "MyDefaultCharacter.h"
 
 #include "AMyDefaultCharatorAnimInstance.h"
+#include "MagicBall.h"
 #include "MyDefaultWidget.h"
 #include "MyDemageWidget.h"
 #include "MyGameInstance.h"
@@ -76,6 +77,20 @@ void AMyDefaultCharacter::Tick(float DeltaTime)
 				MonsterRotate(FVector::ZeroVector);
 			}
 			// 그냥 실행 시키고 본다.
+
+			Aunreal_5_1_three_cGameMode* mode = Cast<
+				Aunreal_5_1_three_cGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
+			if (mode != nullptr && mode->DefaultMagicBallBP != nullptr)
+			{
+				// magicBall생성
+				AMagicBall* ball = GetWorld()->SpawnActor<AMagicBall>(
+					mode->DefaultMagicBallBP, GetActorLocation(), FRotator::ZeroRotator);
+				if (ball != nullptr)
+				{
+					ball->SetVelocity(GetActorForwardVector());
+				}
+			}
+
 			AnimInstance->SetAttacking(true);
 			AnimInstance->PlayAttackMontage();
 			AnimInstance->JumpToAttack(_unitInfo->SkillCode);
@@ -138,7 +153,7 @@ void AMyDefaultCharacter::Tick(float DeltaTime)
 							{
 								newYaw = GetRotate(nextFVector);
 							}
-							
+
 							RotateActor(newYaw);
 							AddMovementInput(nextFVector, _unitInfo->Speed * _dist / 100, true);;
 						}
@@ -265,10 +280,11 @@ void AMyDefaultCharacter::HitDemagePlay(int32 demage)
 			FVector2D StartPosition;
 			FVector2D EndPosition;
 			DemageWidget->AddToViewport();
-			UGameplayStatics::ProjectWorldToScreen(UGameplayStatics::GetPlayerController(GetWorld(), 0), GetActorLocation(), StartPosition);
+			UGameplayStatics::ProjectWorldToScreen(UGameplayStatics::GetPlayerController(GetWorld(), 0),
+			                                       GetActorLocation(), StartPosition);
 			EndPosition = StartPosition;
 			EndPosition.Y -= 100.f;
-			
+
 			Cast<UMyDemageWidget>(DemageWidget)->SetDemageText(FText::FromString(FString::FromInt(demage)));
 			Cast<UMyDemageWidget>(DemageWidget)->StartDemageAnimation(StartPosition, EndPosition);
 		}

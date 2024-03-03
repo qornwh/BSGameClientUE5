@@ -182,7 +182,7 @@ void AMyFSocketActor::ReadMessageHandler(uint8* buffer, int32 size)
 
 				if (!GameMode->isSpwan.Contains(Code))
 				{
-					UE_LOG(LogTemp, Log, TEXT("LOAD : %d  Type : %d !!! %s"), Code, Type, *Name);
+					// UE_LOG(LogTemp, Log, TEXT("LOAD : %d  Type : %d !!! %s"), Code, Type, *Name);
 					instance->AddPlayerInfo(PlayerInfo);
 					GameMode->SpwanAnotherPlayer(PlayerInfo);
 				}
@@ -210,8 +210,8 @@ void AMyFSocketActor::ReadMessageHandler(uint8* buffer, int32 size)
 				MonsterInfo->Name = Name;
 				MonsterInfo->target = Target;
 
-				UE_LOG(LogTemp, Log, TEXT("LOAD : %d HP : %d  Type : %d !!! %s"), Code, Hp, Tpye, *Name);
-				UE_LOG(LogTemp, Log, TEXT("X : %d Y : %d  Z : %d Yaw : %f"), X, Y, Z, Yaw);
+				// UE_LOG(LogTemp, Log, TEXT("LOAD : %d HP : %d  Type : %d !!! %s"), Code, Hp, Tpye, *Name);
+				// UE_LOG(LogTemp, Log, TEXT("X : %d Y : %d  Z : %d Yaw : %f"), X, Y, Z, Yaw);
 				if (!GameMode->isSpwan.Contains(Code))
 				{
 					instance->AddMonsterInfo(MonsterInfo);
