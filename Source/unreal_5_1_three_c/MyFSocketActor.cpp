@@ -252,6 +252,8 @@ void AMyFSocketActor::ReadMessageHandler(uint8* buffer, int32 size)
 				if (code >= 0 && instance->GetPlayerInfo(code))
 				{
 					TSharedPtr<PlayerInfo> info = instance->GetPlayerInfo(code);
+					if (info == nullptr)
+						continue;
 					info->Code = code;
 					info->Position.X = ReadBufferPtr<int32>(buffer, _ptr);
 					info->Position.Y = ReadBufferPtr<int32>(buffer, _ptr);
@@ -264,6 +266,8 @@ void AMyFSocketActor::ReadMessageHandler(uint8* buffer, int32 size)
 				else
 				{
 					TSharedPtr<MonsterInfo> info = instance->GetMonsterInfo(code);
+					if (info == nullptr)
+						continue;
 					info->Code = code;
 					info->Position.X = ReadBufferPtr<int32>(buffer, _ptr);
 					info->Position.Y = ReadBufferPtr<int32>(buffer, _ptr);
