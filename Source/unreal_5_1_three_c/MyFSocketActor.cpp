@@ -80,7 +80,6 @@ void AMyFSocketActor::Tick(float DeltaTime)
 		int byteRead = 0;
 		if (_clientSocket->Wait(ESocketWaitConditions::WaitForRead, FTimespan(1)))
 		{
-			// 일단 읽기 버퍼 클래스만들어서 관리해야되
 			if (_clientSocket->Recv(reinterpret_cast<uint8*>(__readBuffer), 4096, byteRead))
 			{
 				if (byteRead > 0)

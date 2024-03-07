@@ -32,19 +32,6 @@ ALoginGameMode::ALoginGameMode() : Super()
 	{
 		SelectPawnList.Push(PlayerPawnBPClass_02.Class);
 	}
-
-	// static ConstructorHelpers::FClassFinder<UMyWdigetLogin> UI_HUD(
-	// 	TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/ThirdPerson/Blueprints/WBP_LOGIN.WBP_LOGIN_C'"));
-	// if (UI_HUD.Succeeded())
-	// {
-	// 	HUD_Class = UI_HUD.Class;
-	//
-	// 	LoginWidget = CreateWidget(GetWorld(), HUD_Class);
-	// 	if (LoginWidget)
-	// 	{
-	// 		LoginWidget->AddToViewport();
-	// 	}
-	// }
 }
 
 ALoginGameMode::~ALoginGameMode()
@@ -88,12 +75,6 @@ void ALoginGameMode::PreCharacter()
 
 TSubclassOf<class APawn> ALoginGameMode::GetSelectPawnClass()
 {
-	// 메모리 할당 해제 해야되나?? 아니면 언리얼 자체에서 GC 된다면 이거 못찾는데
-	// for (int32 i = 0; i < CharacterList.Num(); i++)
-	// {
-	// 	delete CharacterList[i];
-	// }
-
 	return SelectPawnList[CurrentIdx];
 }
 
