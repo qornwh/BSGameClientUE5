@@ -70,24 +70,24 @@ void AMyDefaultCharacter::Tick(float DeltaTime)
 		{
 			if (_unitInfo->Code < 0)
 			{
-				UE_LOG(LogTemp, Warning, TEXT("몬스터 이동될 좌표 !!! %d %d"), _unitInfo->Position.X,
-				       _unitInfo->Position.Y);
-				UE_LOG(LogTemp, Warning, TEXT("몬스터 현재 좌표 !!! %d %d"), (int32)GetActorLocation().X,
-				       (int32)GetActorLocation().Y);
 				MonsterRotate(FVector::ZeroVector);
 			}
 			// 그냥 실행 시키고 본다.
 
-			Aunreal_5_1_three_cGameMode* mode = Cast<
-				Aunreal_5_1_three_cGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
-			if (mode != nullptr && mode->DefaultMagicBallBP != nullptr)
+			if (_unitInfo->Code > 0)
 			{
-				// magicBall생성
-				AMagicBall* ball = GetWorld()->SpawnActor<AMagicBall>(
-					mode->DefaultMagicBallBP, GetActorLocation(), FRotator::ZeroRotator);
-				if (ball != nullptr)
+				// 플레이어만
+				Aunreal_5_1_three_cGameMode* mode = Cast<
+					Aunreal_5_1_three_cGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
+				if (mode != nullptr && mode->DefaultMagicBallBP != nullptr)
 				{
-					ball->SetVelocity(GetActorForwardVector());
+					// magicBall생성
+					AMagicBall* ball = GetWorld()->SpawnActor<AMagicBall>(
+						mode->DefaultMagicBallBP, GetActorLocation(), FRotator::ZeroRotator);
+					if (ball != nullptr)
+					{
+						ball->SetVelocity(GetActorForwardVector());
+					}
 				}
 			}
 

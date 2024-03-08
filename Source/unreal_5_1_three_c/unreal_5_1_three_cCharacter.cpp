@@ -199,18 +199,17 @@ void Aunreal_5_1_three_cCharacter::AttackCheck()
 		FCollisionShape::MakeSphere(AttackRadius),
 		Params);
 
-	FVector Vec = GetActorForwardVector() * AttackRange;
-	FVector Center = GetActorLocation() + Vec * 0.5f;
-	float HalfHeight = AttackRange * 0.5f + AttackRadius;
-	FQuat Rotation = FRotationMatrix::MakeFromZ(Vec).ToQuat();
-	FColor DrawColor;
-	if (bResult)
-		DrawColor = FColor::Green;
-	else
-		DrawColor = FColor::Red;
-
-	DrawDebugCapsule(GetWorld(), Center, HalfHeight, AttackRadius,
-		Rotation, DrawColor, false, 2.f);
+	// FVector Vec = GetActorForwardVector() * AttackRange;
+	// FVector Center = GetActorLocation() + Vec * 0.5f;
+	// float HalfHeight = AttackRange * 0.5f + AttackRadius;
+	// FQuat Rotation = FRotationMatrix::MakeFromZ(Vec).ToQuat();
+	// FColor DrawColor;
+	// if (bResult)
+	// 	DrawColor = FColor::Green;
+	// else
+	// 	DrawColor = FColor::Red;
+	// DrawDebugCapsule(GetWorld(), Center, HalfHeight, AttackRadius,
+	// 	Rotation, DrawColor, false, 2.f);
 
 	if (bResult && HitResult.GetActor()->IsValidLowLevel())
 	{
