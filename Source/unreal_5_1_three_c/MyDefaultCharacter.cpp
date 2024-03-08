@@ -163,7 +163,6 @@ void AMyDefaultCharacter::Tick(float DeltaTime)
 				{
 					if (interpolation)
 					{
-						// 글로벌 방향으로 계산된 Yaw를 플레이어의 Yaw차이를 추가로 더한다 근데 있을 필요 생각 해봄
 						float Yaw = _unitInfo->Position.Yaw - GetActorRotation().Yaw;
 						RotateActor(Yaw);
 						interpolation = false;
