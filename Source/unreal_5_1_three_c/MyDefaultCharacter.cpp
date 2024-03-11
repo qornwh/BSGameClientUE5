@@ -121,7 +121,7 @@ void AMyDefaultCharacter::Tick(float DeltaTime)
 					if (_unitInfo->Code >= 0 && currentFVector.Equals(destFVector, 30))
 					{
 						double newYew = _unitInfo->Position.Yaw - GetActorRotation().Yaw;
-						RotateActor(newYew * (DeltaTime * 0.5 + 0.5));
+						RotateActor(newYew);
 
 						AddMovementInput(nextFVector, 0.3, true);
 					}
@@ -135,7 +135,7 @@ void AMyDefaultCharacter::Tick(float DeltaTime)
 						if (_unitInfo->Code >= 0)
 						{
 							// 플레이어인 경우
-							float newYew = GetRotate(nextFVector);
+							float newYew = _unitInfo->Position.Yaw - GetActorRotation().Yaw;
 							RotateActor(newYew);
 							AddMovementInput(nextFVector, _unitInfo->Speed * _dist / 100, true);
 						}
