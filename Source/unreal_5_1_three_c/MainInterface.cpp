@@ -9,6 +9,7 @@
 #include "Components/Button.h"
 #include "Components/EditableTextBox.h"
 #include "Components/TextBlock.h"
+#include "Engine/Font.h"
 #include "Kismet/GameplayStatics.h"
 #include "Protocol/P_PROTOCOL_PAKCET.h"
 #include "Serialization/BufferArchive.h"
@@ -23,11 +24,18 @@ void UMainInterface::AppendText(FText text)
 	if (MainChat_SB)
 	{
         UTextBlock* TextBox = NewObject<UTextBlock>(MainChat_SB);
+		
 		if (TextBox)
 		{
 			UE_LOG(LogTemp, Warning, TEXT("AppendText !!! %s"), *text.ToString());
 			MainChat_SB->AddChild(TextBox);
 			TextBox->SetText(text);
+			TextBox->SetColorAndOpacity(FLinearColor::Black);
+			TextBox->SetShadowOffset(FVector2d(5.f, 5.f));
+			TextBox->SetShadowColorAndOpacity(FLinearColor::White);
+			FSlateFontInfo font = TextBox->GetFont();
+			font.Size = 40; 
+			TextBox->SetFont(font);
 		}
 	}
 }

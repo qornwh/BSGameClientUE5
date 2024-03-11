@@ -96,7 +96,7 @@ void UAMyDefaultCharatorAnimInstance::SetAttackMontage(int32 Code)
 	if (AM_Map.Contains(Code) && AM_Map[Code])
 	{
 		AttackMontage = AM_Map[Code];
-		UE_LOG(LogTemp, Warning, TEXT("SetAttackMontage %d !!!"), Code);
+		// UE_LOG(LogTemp, Warning, TEXT("SetAttackMontage %d !!!"), Code);
 	}
 }
 
