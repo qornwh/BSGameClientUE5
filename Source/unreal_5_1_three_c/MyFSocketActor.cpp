@@ -96,7 +96,6 @@ void AMyFSocketActor::Tick(float DeltaTime)
 						if (dataSize < _header->size)
 						{
 							// 일부분만 데이터 들어오는경우 처리해야됨
-							UE_LOG(LogTemp, Warning, TEXT("sdfsdfsdf !!!! %d"), useLen);
 							break;
 						}
 
